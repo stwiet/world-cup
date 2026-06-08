@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Cup 2026 — Trivia</title>
+  <meta name="description" content="Competition. Corruption. Canadian? Let's dig in.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Icons (Tabler Icons CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+  <!-- Your stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page-shell">
+    <div class="pitch-wrap">
+
+      <!-- Hero -->
+      <div class="hero">
+        <p class="hero-eyebrow">🌍 June 2026 &nbsp;·&nbsp; Office Challenge</p>
+        <h1 class="hero-title">World Cup Trivia</h1>
+        <p class="hero-sub">
+         Competition. Corruption. Canadian? Let's dig in.
+        </p>
+        <div class="badge-row">
+          <span class="badge">Submit fun-facts</span>
+          <span class="badge">Answer trivia questions</span>
+          <span class="badge green">Win prizes</span>
+        </div>
+        <div class="hero-grass"></div>
+      </div>
+      <!-- TRIVIA -->
+      <div class="cta-bar">
+        <div class="cta-text">
+          <strong>Trivia Question | Apr 8-12</strong>
+          Which three nations are the co-hosts for the 2026 FIFA World Cup?
+        </div>
+        <!-- Changed from onclick/sendPrompt to a mailto link — works on a real website -->
+        <a class="cta-btn" href="https://app.sli.do/event/87BsrHNCKDtgeY3goA9gdw">Submit your answer!</a>
+      </div>
+      <!-- How it works -->
+      <div class="section">
+        <p class="section-title">Submit Fun Facts</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon"><i class="ti ti-dice-3" aria-hidden="true"></i></div>
+            <div class="card-label">Submit a fun fact for each team</div>
+            <div class="card-desc">You can submit two fun facts per team/country assigned to you.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="ti ti-book-2" aria-hidden="true"></i></div>
+            <div class="card-label">Broad potential subjects</div>
+            <div class="card-desc">Facts can be about the football team or the country (ie. geography, food, music, history, etc.)</div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="ti ti-brain" aria-hidden="true"></i></div>
+            <div class="card-label">Keep it interesting</div>
+            <div class="card-desc">Go a bit deeper than population or continental location (unique, funny, important, etc...)</div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="ti ti-trophy" aria-hidden="true"></i></div>
+            <div class="card-label">Win points!</div>
+            <div class="card-desc">All submissions earn points. The best facts (as chosen by me - Sam) get bonus points.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-bar">
+        <div class="cta-text">
+          <strong>Current Trivia Question</strong>
+          Which three nations are the co-hosts for the 2026 FIFA World Cup?
+        </div>
+        <!-- Changed from onclick/sendPrompt to a mailto link — works on a real website -->
+        <a class="cta-btn" href="https://app.sli.do/event/87BsrHNCKDtgeY3goA9gdw">Submit your answer!</a>
+      </div>
+
+      <!-- Scoring -->
+      <div class="section">
+        <p class="section-title">Scoring — the stuff that matters</p>
+        <div class="card">
+          <table class="points-table">
+            <thead>
+              <tr>
+                <th>What earns points</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Submit a country fact (per team)</td>
+                <td><span class="pts-badge green">+2 each</span></td>
+              </tr>
+              <tr>
+                <td>Your fact makes it to the bulletin board</td>
+                <td><span class="pts-badge green">+3 bonus</span></td>
+              </tr>
+              <tr>
+                <td>Weekly trivia — correct answer</td>
+                <td><span class="pts-badge green">+1</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Nations dropdown -->
+      <div class="section">
+        <p class="section-title">Assigned Teams</p>
+        <button class="nations-toggle" id="nationsToggle" aria-expanded="false" aria-controls="nationsBody">
+          <span>All assigned teams <span style="color:var(--color-text-secondary); font-weight:400;">— click to see who's got what</span></span>
+          <i class="ti ti-chevron-down chevron" aria-hidden="true"></i>
+        </button>
+      </div>
+ 
+
+    </div><!-- /pitch-wrap -->
+  </div><!-- /page-shell -->
+
+  <script>
+    // Build the nations grid
+    const nations = [
+      "Algeria","Argentina","Australia","Austria","Belgium",
+      "Bosnia and Herzegovina","Brazil","Cabo Verde","Canada","Colombia",
+      "Congo DR","Côte d'Ivoire","Croatia","Curaçao","Czechia",
+      "Ecuador","Egypt","England","France","Germany",
+      "Ghana","Haiti","IR Iran","Iraq","Japan",
+      "Jordan","Korea Republic","Mexico","Morocco","Netherlands",
+      "New Zealand","Norway","Panama","Paraguay","Portugal",
+      "Qatar","Saudi Arabia","Scotland","Senegal","South Africa",
+      "Spain","Sweden","Switzerland","Tunisia","Türkiye",
+      "Uruguay","USA","Uzbekistan"
+    ];
+
+    const grid = document.getElementById('nationsGrid');
+    nations.forEach((n, i) => {
+      const div = document.createElement('div');
+      div.className = 'nation-item';
+      div.innerHTML = `<span class="nation-num">${i + 1}.</span><span>${n}</span>`;
+      grid.appendChild(div);
+    });
+
+    // Nations accordion toggle
+    const toggle = document.getElementById('nationsToggle');
+    const body   = document.getElementById('nationsBody');
+    toggle.addEventListener('click', () => {
+      const open = body.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open);
+    });
+  </script>
+
+</body>
+</html>
