@@ -103,12 +103,14 @@ body {
 }
 
 .hero-eyebrow a {
-   color: var(--color-text-primary);
+   color: var(--accent-gold);
+   text-decoration: none;
 }
 
-.hero-eyebrow a.hover {
+.hero-eyebrow a:hover, .hero-eyebrow a:focus {
    color: var(--color-text-secondary);
    font-weight: 600;
+   text-decoration: none;
 }
 
 .hero-title {
