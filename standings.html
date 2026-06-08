@@ -34,14 +34,220 @@
         <div class="hero-grass"></div>
       </div>
 
-            <!-- Results Embed -->
-      <div class="section">
-        <p class="section-title">Check your group results</p>
-      <script async src="https://cse.google.com/cse.js?cx=620b51e621840443c">
+<div class="widget-header">
+  <p class="widget-eyebrow">⚽ Canada · USA · Mexico</p>
+  <h1 class="widget-title">World Cup <span>2026</span></h1>
+  <p class="widget-title" style="font-size:clamp(1.2rem,3vw,1.6rem); color: var(--muted);">Group Stage Standings</p>
+  <p class="widget-sub">Data via <a href="https://github.com/openfootball/worldcup.json" style="color:var(--gold);">openfootball/worldcup.json</a> · public domain</p>
+  <div id="lastUpdated"></div>
+</div>
+ 
+<div id="appRoot">
+  <div class="state-box">
+    <div class="spinner"></div>
+    <p>Loading match data…</p>
+  </div>
+</div>
+ 
+<div class="legend" id="legend" style="display:none">
+  <div class="legend-item"><div class="legend-bar" style="background:var(--win)"></div> Advances to R32</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--win)"></div> Win</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--draw)"></div> Draw</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--loss)"></div> Loss</div>
+</div>
+ 
+<script>
+const DATA_URL = 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
+const GROUP_STAGE_ROUNDS = ['Matchday 1','Matchday 2','Matchday 3','Matchday 4','Matchday 5','Matchday 6','Matchday 7','Matchday 8','Matchday 9','Matchday 10','Matchday 11','Matchday 12','Matchday 13','Matchday 14','Matchday 15','Matchday 16'];
+ 
+function shortName(name) {
+  const map = {
+    'UEFA Path A winner': 'UEFA Path A',
+    'UEFA Path B winner': 'UEFA Path B',
+    'UEFA Path C winner': 'UEFA Path C',
+    'UEFA Path D winner': 'UEFA Path D',
+    'Korea Republic': 'Korea Rep.',
+    'Bosnia and Herzegovina': 'Bosnia & Herz.',
+    'South Korea': 'Korea Rep.',
+    'Czech Republic': 'Czechia',
+  };
+  return map[name] || name;
+}
+ 
+function fmtDate(d) {
+  if (!d) return '';
+  const dt = new Date(d + 'T00:00:00');
+  return dt.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
+}
+ 
+function buildStandings(matches) {
+  const groups = {};
+  const played = {};
+ 
+  matches.forEach(m => {
+    if (!m.group || !GROUP_STAGE_ROUNDS.includes(m.round)) return;
+    const g = m.group;
+    if (!groups[g]) groups[g] = {};
+    if (!played[g]) played[g] = [];
+ 
+    [m.team1, m.team2].forEach(t => {
+      if (!groups[g][t]) groups[g][t] = { p:0, w:0, d:0, l:0, gf:0, ga:0, pts:0, form:[] };
+    });
+ 
+    if (m.score && m.score.ft) {
+      const [g1, g2] = m.score.ft;
+      const t1 = groups[g][m.team1], t2 = groups[g][m.team2];
+      t1.p++; t2.p++;
+      t1.gf += g1; t1.ga += g2;
+      t2.gf += g2; t2.ga += g1;
+      if (g1 > g2)      { t1.w++; t1.pts+=3; t1.form.push('W'); t2.l++; t2.form.push('L'); }
+      else if (g1 < g2) { t2.w++; t2.pts+=3; t2.form.push('W'); t1.l++; t1.form.push('L'); }
+      else              { t1.d++; t1.pts+=1; t1.form.push('D'); t2.d++; t2.pts+=1; t2.form.push('D'); }
+      played[g].push(m);
+    }
+  });
+ 
+  // Sort each group
+  const sorted = {};
+  Object.keys(groups).sort().forEach(g => {
+    sorted[g] = Object.entries(groups[g])
+      .map(([name, s]) => ({ name, ...s, gd: s.gf - s.ga }))
+      .sort((a,b) => b.pts - a.pts || b.gd - a.gd || b.gf - a.gf || a.name.localeCompare(b.name));
+  });
+  return { sorted, played };
+}
+ 
+function gdClass(n) {
+  if (n > 0) return 'gd-pos';
+  if (n < 0) return 'gd-neg';
+  return 'gd-zero';
+}
+ 
+function renderForm(form) {
+  const dots = [...form].slice(-5);
+  while (dots.length < 5) dots.unshift('empty');
+  return dots.map(r => `<span class="form-dot ${r}"></span>`).join('');
+}
+ 
+function renderGroups(data, filter) {
+  const { sorted, played } = data;
+  const allGroups = Object.keys(sorted);
+ 
+  // Build tabs
+  let tabsHtml = `<div class="group-tabs"><button class="tab-btn ${filter==='all'?'active':''}" data-filter="all">All Groups</button>`;
+  allGroups.forEach(g => {
+    const letter = g.replace('Group ','');
+    tabsHtml += `<button class="tab-btn ${filter===g?'active':''}" data-filter="${g}">${letter}</button>`;
+  });
+  tabsHtml += '</div>';
+ 
+  let gridHtml = '<div class="groups-grid">';
+  allGroups.forEach(g => {
+    const teams = sorted[g];
+    const matchesPlayed = (played[g] || []).length;
+    const isHidden = filter !== 'all' && filter !== g;
+    const recentMatches = (played[g] || []).slice(-3).reverse();
+ 
+    let rows = teams.map((t, i) => {
+      const advancing = i < 2 && t.p > 0;
+      return `<tr class="${advancing ? 'advancing' : ''}">
+        <td class="team-cell"><span class="team-pos">${i+1}</span>${shortName(t.name)}</td>
+        <td>${t.p}</td>
+        <td>${t.w}</td>
+        <td>${t.d}</td>
+        <td>${t.l}</td>
+        <td>${t.gf}:${t.ga}</td>
+        <td class="${gdClass(t.gd)}">${t.gd > 0 ? '+' : ''}${t.gd}</td>
+        <td class="pts-cell">${t.pts}</td>
+        <td class="form-cell">${renderForm(t.form)}</td>
+      </tr>`;
+    }).join('');
+ 
+    let recentHtml = '';
+    if (recentMatches.length > 0) {
+      recentHtml = `<div class="recent-matches">
+        <div class="recent-label">Results</div>
+        ${recentMatches.map(m => `
+          <div class="match-row">
+            <span class="match-date">${fmtDate(m.date)}</span>
+            <div class="match-teams">
+              <span class="match-team team1">${shortName(m.team1)}</span>
+              <span class="match-score">${m.score.ft[0]}–${m.score.ft[1]}</span>
+              <span class="match-team">${shortName(m.team2)}</span>
+            </div>
+          </div>`).join('')}
+      </div>`;
+    }
+ 
+    gridHtml += `
+      <div class="group-card ${isHidden ? 'hidden' : ''}" data-group="${g}">
+        <div class="group-header">
+          <span class="group-name">${g}</span>
+          <span class="group-played">${matchesPlayed} match${matchesPlayed !== 1 ? 'es' : ''} played</span>
+        </div>
+        <table class="standings-table">
+          <thead><tr>
+            <th class="team-col">Team</th>
+            <th title="Played">P</th>
+            <th title="Won">W</th>
+            <th title="Drawn">D</th>
+            <th title="Lost">L</th>
+            <th title="Goals">GF:GA</th>
+            <th title="Goal difference">GD</th>
+            <th title="Points">Pts</th>
+            <th class="form-cell" title="Last 5">Form</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+        ${recentHtml}
+      </div>`;
+  });
+  gridHtml += '</div>';
+ 
+  return tabsHtml + gridHtml;
+}
+ 
+let cachedData = null;
+let currentFilter = 'all';
+ 
+async function load() {
+  document.getElementById('appRoot').innerHTML = `<div class="state-box"><div class="spinner"></div><p>Loading match data…</p></div>`;
+  try {
+    const res = await fetch(DATA_URL + '?_=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    cachedData = buildStandings(json.matches || []);
+ 
+    document.getElementById('lastUpdated').innerHTML =
+      `<span class="last-updated">Updated ${new Date().toLocaleTimeString('en-CA', {hour:'2-digit',minute:'2-digit'})}</span>`;
+ 
+    render();
+    document.getElementById('legend').style.display = 'flex';
+  } catch(e) {
+    document.getElementById('appRoot').innerHTML = `
+      <div class="state-box">
+        <div class="error-icon">⚠️</div>
+        <p>Couldn't load match data.<br><small style="color:var(--muted)">${e.message}</small></p>
+        <button class="retry-btn" onclick="load()">Retry</button>
+      </div>`;
+  }
+}
+ 
+function render() {
+  if (!cachedData) return;
+  document.getElementById('appRoot').innerHTML = renderGroups(cachedData, currentFilter);
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentFilter = btn.dataset.filter;
+      render();
+    });
+  });
+}
+ 
+load();
+// Auto-refresh every 5 minutes
+setInterval(load, 5 * 60 * 1000);
 </script>
-<div class="gcse-search"></div>
-      </div>
-    </div>
 
 </body>
 </html>
