@@ -102,6 +102,15 @@ body {
   margin: 0 0 0.5rem;
 }
 
+.hero-eyebrow a {
+   color: var(--color-text-primary);
+}
+
+.hero-eyebrow a.hover {
+   color: var(--color-text-secondary);
+   font-weight: 600;
+}
+
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(2.4rem, 6vw, 3.6rem);
