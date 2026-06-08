@@ -184,6 +184,16 @@ body {
 .card-label { font-size: 13px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 4px; }
 .card-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; }
 
+.card-label a {
+   color: var(--accent-gold);
+   text-decoration: none;
+}
+
+.card-label a:hover, .card-label a:focus {
+   color: var(--color-text-secondary);
+   text-decoration: none;
+}
+
 /* ============================================================
    Points table
    ============================================================ */
