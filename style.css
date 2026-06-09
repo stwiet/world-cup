@@ -718,11 +718,11 @@ body {
   .form-cell    { display: none; }
 }
 
-<!-- ── Minimal scoped styles ───────────────────────────────────────────────
+/* ============================================================
+Minimal scoped styles 
      Only rules not already covered by your central stylesheet.
      Uses your existing tokens throughout.
-     ──────────────────────────────────────────────────────────────────── -->
-<style>
+       ============================================================ */
 .assignments-wrap {
   margin: 2rem 0;
 }
@@ -837,4 +837,300 @@ body {
   color: var(--accent-gold);
   border: 1px solid rgba(245, 166, 35, 0.3);
 }
-</style>
+/* ============================================================
+   Match Calendar — additions to central stylesheet
+   No new tokens required — all values use existing :root vars.
+   No new font families required — Bebas Neue, Lato, Barlow,
+   and Barlow Condensed are already in your Google Fonts import.
+   ============================================================ */
+
+/* ============================================================
+   Page header
+   ============================================================ */
+.cal-header {
+  margin-bottom: 2rem;
+}
+
+.cal-eyebrow {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--accent-gold);
+  margin-bottom: 4px;
+}
+
+.cal-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1;
+  color: var(--color-text-primary);
+}
+.cal-title span { color: var(--accent-gold); }
+
+.cal-sub {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Week navigation bar
+   ============================================================ */
+.week-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.week-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: var(--accent-gold);
+  flex: 1;
+}
+
+.nav-btn {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 6px 16px;
+  border-radius: 99px;
+  border: 1px solid var(--color-border-tertiary);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.nav-btn:hover:not(:disabled) { border-color: var(--accent-gold); color: var(--accent-gold); }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+/* ============================================================
+   Calendar grid — 2 columns, variable rows
+   ============================================================ */
+.cal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ── Day cell (base) ── */
+.day-cell {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* "Upcoming" label cell — top-left slot */
+.day-cell.upcoming-label {
+  background: var(--navy-deep);
+  border-color: rgba(245, 166, 35, 0.2);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.upcoming-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  color: var(--accent-gold);
+  line-height: 1;
+}
+
+.upcoming-range {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  margin-top: 6px;
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+/* Today cell */
+.day-cell.is-today {
+  border-color: rgba(245, 166, 35, 0.4);
+  box-shadow: 0 0 0 1px rgba(245, 166, 35, 0.15);
+}
+.day-cell.is-today .day-header {
+  background: rgba(245, 166, 35, 0.12);
+}
+
+/* Past day */
+.day-cell.is-past { opacity: 0.55; }
+
+/* Empty day — no matches */
+.day-cell.empty-day {
+  background: var(--color-background-page);
+  border-style: dashed;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-day-label {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* ── Day header strip ── */
+.day-header {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 8px 12px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border-tertiary);
+  flex-shrink: 0;
+}
+
+.day-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  color: var(--color-text-primary);
+}
+
+.day-date {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+.today-pill {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: var(--accent-gold);
+  color: var(--navy-deep);
+  border-radius: 99px;
+  padding: 1px 7px;
+  margin-left: 6px;
+}
+
+/* ── Match list ── */
+.match-list {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+/* ── Individual match card ── */
+.match-card {
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+  padding: 6px 9px;
+}
+
+.match-card.has-participant {
+  border-color: rgba(245, 166, 35, 0.35);
+  background: rgba(245, 166, 35, 0.06);
+}
+
+.match-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3px;
+}
+
+.match-group {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.match-time {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+}
+
+.match-teams-row {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.match-vs {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin: 0 4px;
+}
+
+/* ── Participant name tags ── */
+.participant-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.ptag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 1px 6px;
+  border-radius: 99px;
+  background: rgba(245, 166, 35, 0.15);
+  color: var(--accent-gold);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+}
+
+.ptag.wildcard {
+  background: rgba(127, 239, 177, 0.1);
+  color: var(--accent-green);
+  border-color: rgba(127, 239, 177, 0.25);
+}
+
+/* ============================================================
+   Calendar legend
+   ============================================================ */
+.cal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 1.5rem;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  padding: 10px 14px;
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+}
+
+/* .legend-item and .legend-swatch already defined in standings-additions.css —
+   no need to repeat them here. If you're not using that file, add these back:
+
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+*/
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 560px) {
+  .cal-grid                    { grid-template-columns: 1fr; }
+  .day-cell.upcoming-label     { min-height: 80px; }
+  .match-teams-row             { font-size: 11px; }
+}
