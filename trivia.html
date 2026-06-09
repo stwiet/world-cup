@@ -108,52 +108,10 @@
           </table>
         </div>
       </div>
-
-      <!-- Nations dropdown -->
-      <div class="section">
-        <p class="section-title">Assigned Teams</p>
-        <button class="nations-toggle" id="nationsToggle" aria-expanded="false" aria-controls="nationsBody">
-          <span>All assigned teams <span style="color:var(--color-text-secondary); font-weight:400;">— click to see who's got what</span></span>
-          <i class="ti ti-chevron-down chevron" aria-hidden="true"></i>
-        </button>
-      </div>
  
 
     </div><!-- /pitch-wrap -->
   </div><!-- /page-shell -->
-
-  <script>
-    // Build the nations grid
-    const nations = [
-      "Algeria","Argentina","Australia","Austria","Belgium",
-      "Bosnia and Herzegovina","Brazil","Cabo Verde","Canada","Colombia",
-      "Congo DR","Côte d'Ivoire","Croatia","Curaçao","Czechia",
-      "Ecuador","Egypt","England","France","Germany",
-      "Ghana","Haiti","IR Iran","Iraq","Japan",
-      "Jordan","Korea Republic","Mexico","Morocco","Netherlands",
-      "New Zealand","Norway","Panama","Paraguay","Portugal",
-      "Qatar","Saudi Arabia","Scotland","Senegal","South Africa",
-      "Spain","Sweden","Switzerland","Tunisia","Türkiye",
-      "Uruguay","USA","Uzbekistan"
-    ];
-
-    const grid = document.getElementById('nationsGrid');
-    nations.forEach((n, i) => {
-      const div = document.createElement('div');
-      div.className = 'nation-item';
-      div.innerHTML = `<span class="nation-num">${i + 1}.</span><span>${n}</span>`;
-      grid.appendChild(div);
-    });
-
-    // Nations accordion toggle
-    const toggle = document.getElementById('nationsToggle');
-    const body   = document.getElementById('nationsBody');
-    toggle.addEventListener('click', () => {
-      const open = body.classList.toggle('open');
-      toggle.classList.toggle('open', open);
-      toggle.setAttribute('aria-expanded', open);
-    });
-  </script>
 
 </body>
 </html>
