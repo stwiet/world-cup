@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Cup 2026 — Office Challenge Teams</title>
+  <meta name="description" content="Assigned teams and game information.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Icons (Tabler Icons CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+  <!-- Your stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page-shell">
+    <div class="pitch-wrap">
+
+      <!-- Hero -->
+      <div class="hero">
+        <p class="hero-eyebrow">🌍 June 2026 &nbsp;·&nbsp; <a href="/world-cup">Home</a> &nbsp;·&nbsp; <a href="/world-cup/#">Teams/Games</a> &nbsp;·&nbsp; <a href="/world-cup/trivia">Trivia</a> &nbsp;·&nbsp; <a href="/world-cup/standings">Standings</a> &nbsp;·&nbsp; <a href="/world-cup/learn">Learn More</a></p>
+        <h1 class="hero-title">World Cup<br><span>Team Assignments</span></h1>
+        <p class="hero-sub">
+          Locate your assigned teams and lookup game schedules here.
+        </p>
+        <div class="badge-row">
+          <span class="badge">Teams randomly assigned</span>
+          <span class="badge">Games all over North America</span>
+          <span class="badge green">Wildcard Teams for bonus points</span>
+        </div>
+        <div class="hero-grass"></div>
+      </div>
+
+      <!-- ============================================================
+     Team Assignments — embed snippet
+     Requires: your central style.css already loaded on the page
+     Requires: Bebas Neue + Lato via Google Fonts (already in your sheet)
+     ============================================================ -->
+ 
+<section class="assignments-wrap">
+   <p class="section-title">Find your Teams!</p>
+  <div class="assignments-header">
+    <p class="section-title">⚽ Team Assignments</p>
+    <p class="assignments-sub">Each participant is randomly assigned 2 teams. Points are earned when your teams win, advance, or top their group — no football knowledge required.</p>
+  </div>
+ 
+  <div class="assignments-grid">
+ 
+    <!-- Table A — Adam → Lauren -->
+    <table class="assign-table">
+      <thead>
+        <tr>
+          <th class="col-name">Participant</th>
+          <th class="col-team">Team 1</th>
+          <th class="col-team">Team 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="name-cell">Adam</td>         <td>Brazil</td>          <td>Saudi Arabia</td></tr>
+        <tr><td class="name-cell">Aly</td>          <td>Ecuador</td>         <td>Australia</td></tr>
+        <tr><td class="name-cell">Cortney</td>      <td>Colombia</td>        <td>Egypt</td></tr>
+        <tr><td class="name-cell">Heather</td>      <td>France</td>          <td>Türkiye</td></tr>
+        <tr><td class="name-cell">Jacqueline</td>   <td>Croatia</td>         <td>IR Iran</td></tr>
+        <tr><td class="name-cell">Jody</td>         <td>Mexico</td>          <td>South Africa</td></tr>
+        <tr><td class="name-cell">Kelly</td>        <td>Germany</td>         <td>Cabo Verde</td></tr>
+        <tr><td class="name-cell">Kyle</td>         <td>Côte d'Ivoire</td>   <td>Morocco</td></tr>
+        <tr><td class="name-cell">Lauren</td>       <td>Argentina</td>       <td>Ghana</td></tr>
+        <tr><td class="name-cell">Lindsay</td>      <td>Belgium</td>         <td>Korea Republic</td></tr>
+      </tbody>
+    </table>
+ 
+    <!-- Table B — Lucy → Steve -->
+    <table class="assign-table">
+      <thead>
+        <tr>
+          <th class="col-name">Participant</th>
+          <th class="col-team">Team 1</th>
+          <th class="col-team">Team 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="name-cell">Lucy</td>         <td>Japan</td>           <td>Haiti</td></tr>
+        <tr><td class="name-cell">Maureen</td>      <td>USA</td>             <td>Bosnia and Herzegovina</td></tr>
+        <tr><td class="name-cell">Michele</td>      <td>Uruguay</td>         <td>Algeria</td></tr>
+        <tr><td class="name-cell">Miguel</td>       <td>Paraguay</td>        <td>Netherlands</td></tr>
+        <tr><td class="name-cell">Monique</td>      <td>England</td>         <td>Uzbekistan</td></tr>
+        <tr><td class="name-cell">Raj</td>          <td>Portugal</td>        <td>Tunisia</td></tr>
+        <tr><td class="name-cell">Ravi</td>         <td>Norway</td>          <td>Czechia</td></tr>
+        <tr><td class="name-cell">Sam</td>          <td>Senegal</td>         <td>Austria</td></tr>
+        <tr><td class="name-cell">Shaun</td>        <td>Scotland</td>        <td>Switzerland</td></tr>
+        <tr><td class="name-cell">Steve</td>        <td>Canada</td>          <td>Sweden</td></tr>
+      </tbody>
+    </table>
+ 
+  </div>
+ 
+  <!-- Wildcard banner -->
+  <div class="wildcard-banner">
+    <span class="wildcard-label">🃏 Wildcard Teams — Everyone's Teams</span>
+    <p class="wildcard-sub">
+      These 8 teams belong to the whole group. When they win, <strong>everyone</strong> earns ½ pt.
+      Submit a fun fact about any wildcard country in Teams for a +1 bonus point.
+    </p>
+    <div class="wildcard-teams" id="wildcardTeams">
+      <!-- Populated via JS below so you can edit the list in one place -->
+    </div>
+  </div>
+ 
+</section>
+      
+     <header class="cal-header">
+    <p class="cal-eyebrow">⚽ FIFA World Cup 2026 · Office Challenge</p>
+    <h1 class="cal-title">Match <span>Calendar</span></h1>
+    <p class="cal-sub">Group stage fixtures · Highlighted matches feature one of our teams. Gold = assigned participant · Green = Wildcard team.</p>
+  </header>
+ 
+  <div class="week-nav">
+    <button class="nav-btn" id="prevBtn" onclick="shiftWeek(-1)">← Prev</button>
+    <span class="week-label" id="weekLabel"></span>
+    <button class="nav-btn" id="nextBtn" onclick="shiftWeek(1)">Next →</button>
+  </div>
+ 
+  <div class="cal-grid" id="calGrid"></div>
+ 
+  <div class="cal-legend">
+    <div class="legend-item">
+      <div class="legend-swatch" style="background:rgba(245,166,35,0.35); border:1px solid rgba(245,166,35,0.5)"></div>
+      Match includes an assigned participant's team
+    </div>
+    <div class="legend-item">
+      <div class="legend-swatch" style="background:rgba(127,239,177,0.2); border:1px solid rgba(127,239,177,0.35)"></div>
+      Wildcard team playing — anyone can earn a bonus point
+    </div>
+    <div class="legend-item">
+      <div class="legend-swatch" style="opacity:0.4; background:var(--color-background-secondary); border:1px solid var(--color-border-tertiary)"></div>
+      Past match
+    </div>
+  </div>
+
+    </div><!-- /pitch-wrap -->
+  </div><!-- /page-shell -->
+
+  <script>
+// ── Edit this list when your 8 wildcard teams are confirmed ──
+const wildcards = [
+  "Qatar",
+  "New Zealand",
+  "Jordan",
+  "Iraq",
+  "Curaçao",
+  "Spain",
+  "Sweden",   // placeholder — replace with your actual 8
+  "Congo DR",
+];
+ 
+const container = document.getElementById('wildcardTeams');
+wildcards.forEach(name => {
+  const pill = document.createElement('span');
+  pill.className = 'wc-pill';
+  pill.textContent = name;
+  container.appendChild(pill);
+});
+</script>
+
+  <script>
+// ── All matches parsed from source data ─────────────────────────────────
+const MATCHES = [
+  // Jun 11
+  {date:"2026-06-11",time:"1:00 p.m.",group:"Group A",t1:"Mexico",t2:"South Africa"},
+  {date:"2026-06-11",time:"8:00 p.m.",group:"Group A",t1:"South Korea",t2:"Czechia"},
+  // Jun 12
+  {date:"2026-06-12",time:"1:00 p.m.",group:"Group B",t1:"Canada",t2:"Bosnia and Herzegovina"},
+  {date:"2026-06-12",time:"7:00 p.m.",group:"Group D",t1:"USA",t2:"Paraguay"},
+  // Jun 13
+  {date:"2026-06-13",time:"1:00 p.m.",group:"Group B",t1:"Qatar",t2:"Switzerland"},
+  {date:"2026-06-13",time:"4:00 p.m.",group:"Group C",t1:"Brazil",t2:"Morocco"},
+  {date:"2026-06-13",time:"7:00 p.m.",group:"Group C",t1:"Haiti",t2:"Scotland"},
+  {date:"2026-06-13",time:"10:00 p.m.",group:"Group D",t1:"Australia",t2:"Türkiye"},
+  // Jun 14
+  {date:"2026-06-14",time:"11:00 a.m.",group:"Group E",t1:"Germany",t2:"Curaçao"},
+  {date:"2026-06-14",time:"2:00 p.m.",group:"Group F",t1:"Netherlands",t2:"Japan"},
+  {date:"2026-06-14",time:"5:00 p.m.",group:"Group E",t1:"Côte d'Ivoire",t2:"Ecuador"},
+  {date:"2026-06-14",time:"8:00 p.m.",group:"Group F",t1:"Sweden",t2:"Tunisia"},
+  // Jun 15
+  {date:"2026-06-15",time:"10:00 a.m.",group:"Group H",t1:"Spain",t2:"Cabo Verde"},
+  {date:"2026-06-15",time:"1:00 p.m.",group:"Group G",t1:"Belgium",t2:"Egypt"},
+  {date:"2026-06-15",time:"4:00 p.m.",group:"Group H",t1:"Saudi Arabia",t2:"Uruguay"},
+  {date:"2026-06-15",time:"7:00 p.m.",group:"Group G",t1:"IR Iran",t2:"New Zealand"},
+  // Jun 16
+  {date:"2026-06-16",time:"1:00 p.m.",group:"Group I",t1:"France",t2:"Senegal"},
+  {date:"2026-06-16",time:"4:00 p.m.",group:"Group I",t1:"Iraq",t2:"Norway"},
+  {date:"2026-06-16",time:"7:00 p.m.",group:"Group J",t1:"Argentina",t2:"Algeria"},
+  {date:"2026-06-16",time:"10:00 p.m.",group:"Group J",t1:"Austria",t2:"Jordan"},
+  // Jun 17
+  {date:"2026-06-17",time:"11:00 a.m.",group:"Group K",t1:"Portugal",t2:"Congo DR"},
+  {date:"2026-06-17",time:"2:00 p.m.",group:"Group L",t1:"England",t2:"Croatia"},
+  {date:"2026-06-17",time:"5:00 p.m.",group:"Group L",t1:"Ghana",t2:"Panama"},
+  {date:"2026-06-17",time:"8:00 p.m.",group:"Group K",t1:"Uzbekistan",t2:"Colombia"},
+  // Jun 18
+  {date:"2026-06-18",time:"10:00 a.m.",group:"Group A",t1:"Czechia",t2:"South Africa"},
+  {date:"2026-06-18",time:"1:00 p.m.",group:"Group B",t1:"Switzerland",t2:"Bosnia and Herzegovina"},
+  {date:"2026-06-18",time:"4:00 p.m.",group:"Group B",t1:"Canada",t2:"Qatar"},
+  {date:"2026-06-18",time:"7:00 p.m.",group:"Group A",t1:"Mexico",t2:"South Korea"},
+  // Jun 19
+  {date:"2026-06-19",time:"1:00 p.m.",group:"Group D",t1:"USA",t2:"Australia"},
+  {date:"2026-06-19",time:"4:00 p.m.",group:"Group C",t1:"Scotland",t2:"Morocco"},
+  {date:"2026-06-19",time:"6:30 p.m.",group:"Group C",t1:"Brazil",t2:"Haiti"},
+  {date:"2026-06-19",time:"9:00 p.m.",group:"Group D",t1:"Türkiye",t2:"Paraguay"},
+  // Jun 20
+  {date:"2026-06-20",time:"11:00 a.m.",group:"Group F",t1:"Netherlands",t2:"Sweden"},
+  {date:"2026-06-20",time:"2:00 p.m.",group:"Group E",t1:"Germany",t2:"Côte d'Ivoire"},
+  {date:"2026-06-20",time:"6:00 p.m.",group:"Group E",t1:"Ecuador",t2:"Curaçao"},
+  {date:"2026-06-20",time:"10:00 p.m.",group:"Group F",t1:"Tunisia",t2:"Japan"},
+  // Jun 21
+  {date:"2026-06-21",time:"10:00 a.m.",group:"Group H",t1:"Spain",t2:"Saudi Arabia"},
+  {date:"2026-06-21",time:"1:00 p.m.",group:"Group G",t1:"Belgium",t2:"IR Iran"},
+  {date:"2026-06-21",time:"4:00 p.m.",group:"Group H",t1:"Uruguay",t2:"Cabo Verde"},
+  {date:"2026-06-21",time:"7:00 p.m.",group:"Group G",t1:"New Zealand",t2:"Egypt"},
+  // Jun 22
+  {date:"2026-06-22",time:"11:00 a.m.",group:"Group J",t1:"Argentina",t2:"Austria"},
+  {date:"2026-06-22",time:"3:00 p.m.",group:"Group I",t1:"France",t2:"Iraq"},
+  {date:"2026-06-22",time:"6:00 p.m.",group:"Group I",t1:"Norway",t2:"Senegal"},
+  {date:"2026-06-22",time:"9:00 p.m.",group:"Group J",t1:"Jordan",t2:"Algeria"},
+  // Jun 23
+  {date:"2026-06-23",time:"11:00 a.m.",group:"Group K",t1:"Portugal",t2:"Uzbekistan"},
+  {date:"2026-06-23",time:"2:00 p.m.",group:"Group L",t1:"England",t2:"Ghana"},
+  {date:"2026-06-23",time:"5:00 p.m.",group:"Group L",t1:"Panama",t2:"Croatia"},
+  {date:"2026-06-23",time:"8:00 p.m.",group:"Group K",t1:"Colombia",t2:"Congo DR"},
+  // Jun 24
+  {date:"2026-06-24",time:"1:00 p.m.",group:"Group B",t1:"Switzerland",t2:"Canada"},
+  {date:"2026-06-24",time:"1:00 p.m.",group:"Group B",t1:"Bosnia and Herzegovina",t2:"Qatar"},
+  {date:"2026-06-24",time:"4:00 p.m.",group:"Group C",t1:"Morocco",t2:"Haiti"},
+  {date:"2026-06-24",time:"4:00 p.m.",group:"Group C",t1:"Scotland",t2:"Brazil"},
+  {date:"2026-06-24",time:"7:00 p.m.",group:"Group A",t1:"South Africa",t2:"South Korea"},
+  {date:"2026-06-24",time:"7:00 p.m.",group:"Group A",t1:"Czechia",t2:"Mexico"},
+  // Jun 25
+  {date:"2026-06-25",time:"2:00 p.m.",group:"Group E",t1:"Curaçao",t2:"Côte d'Ivoire"},
+  {date:"2026-06-25",time:"2:00 p.m.",group:"Group E",t1:"Ecuador",t2:"Germany"},
+  {date:"2026-06-25",time:"5:00 p.m.",group:"Group F",t1:"Tunisia",t2:"Netherlands"},
+  {date:"2026-06-25",time:"5:00 p.m.",group:"Group F",t1:"Japan",t2:"Sweden"},
+  {date:"2026-06-25",time:"8:00 p.m.",group:"Group D",t1:"Türkiye",t2:"USA"},
+  {date:"2026-06-25",time:"8:00 p.m.",group:"Group D",t1:"Paraguay",t2:"Australia"},
+  // Jun 26
+  {date:"2026-06-26",time:"1:00 p.m.",group:"Group I",t1:"Norway",t2:"France"},
+  {date:"2026-06-26",time:"1:00 p.m.",group:"Group I",t1:"Senegal",t2:"Iraq"},
+  {date:"2026-06-26",time:"6:00 p.m.",group:"Group H",t1:"Cabo Verde",t2:"Saudi Arabia"},
+  {date:"2026-06-26",time:"6:00 p.m.",group:"Group H",t1:"Uruguay",t2:"Spain"},
+  {date:"2026-06-26",time:"9:00 p.m.",group:"Group G",t1:"New Zealand",t2:"Belgium"},
+  {date:"2026-06-26",time:"9:00 p.m.",group:"Group G",t1:"Egypt",t2:"IR Iran"},
+  // Jun 27
+  {date:"2026-06-27",time:"3:00 p.m.",group:"Group L",t1:"Panama",t2:"England"},
+  {date:"2026-06-27",time:"3:00 p.m.",group:"Group L",t1:"Croatia",t2:"Ghana"},
+  {date:"2026-06-27",time:"5:30 p.m.",group:"Group K",t1:"Colombia",t2:"Portugal"},
+  {date:"2026-06-27",time:"5:30 p.m.",group:"Group K",t1:"Congo DR",t2:"Uzbekistan"},
+  {date:"2026-06-27",time:"8:00 p.m.",group:"Group J",t1:"Algeria",t2:"Austria"},
+  {date:"2026-06-27",time:"8:00 p.m.",group:"Group J",t1:"Jordan",t2:"Argentina"},
+];
+ 
+// ── Participant → teams lookup ───────────────────────────────────────────
+// Key: canonical team name as it appears in MATCHES
+// Value: array of participant first names
+const TEAM_OWNERS = {
+  "Brazil":                 ["Adam"],
+  "Saudi Arabia":           ["Adam"],
+  "Ecuador":                ["Aly"],
+  "Australia":              ["Aly"],
+  "Colombia":               ["Cortney"],
+  "Egypt":                  ["Cortney"],
+  "France":                 ["Heather"],
+  "Türkiye":                ["Heather"],
+  "Croatia":                ["Jacqueline"],
+  "IR Iran":                ["Jacqueline"],
+  "Mexico":                 ["Jody"],
+  "South Africa":           ["Jody"],
+  "Germany":                ["Kelly"],
+  "Cabo Verde":             ["Kelly"],
+  "Côte d'Ivoire":          ["Kyle"],
+  "Morocco":                ["Kyle"],
+  "Argentina":              ["Lauren"],
+  "Ghana":                  ["Lauren"],
+  "Belgium":                ["Lindsay"],
+  "Korea Republic":         ["Lindsay"],
+  "South Korea":            ["Lindsay"],
+  "Japan":                  ["Lucy"],
+  "Haiti":                  ["Lucy"],
+  "USA":                    ["Maureen"],
+  "Bosnia and Herzegovina": ["Maureen"],
+  "Uruguay":                ["Michele"],
+  "Algeria":                ["Michele"],
+  "Paraguay":               ["Miguel"],
+  "Netherlands":            ["Miguel"],
+  "England":                ["Monique"],
+  "Uzbekistan":             ["Monique"],
+  "Portugal":               ["Raj"],
+  "Tunisia":                ["Raj"],
+  "Norway":                 ["Ravi"],
+  "Czechia":                ["Ravi"],
+  "Senegal":                ["Sam"],
+  "Austria":                ["Sam"],
+  "Scotland":               ["Shaun"],
+  "Switzerland":            ["Shaun"],
+  "Canada":                 ["Steve"],
+  "Sweden":                 ["Steve"],
+};
+ 
+// ── Wildcard teams (update once confirmed) ──────────────────────────────
+// Using the 8 teams not assigned above from the 48-team list
+const WILDCARDS = new Set([
+  "Qatar", "New Zealand", "Jordan", "Iraq",
+  "Curaçao", "Spain", "Congo DR", "Panama",
+]);
+ 
+// ── Helpers ─────────────────────────────────────────────────────────────
+function parseDate(str) {
+  // "2026-06-11" → Date at local midnight
+  const [y,m,d] = str.split('-').map(Number);
+  return new Date(y, m-1, d);
+}
+ 
+function fmtDayName(d) {
+  return d.toLocaleDateString('en-CA', {weekday:'short'}).toUpperCase();
+}
+function fmtMonthDay(d) {
+  return d.toLocaleDateString('en-CA', {month:'short', day:'numeric'});
+}
+ 
+function localToday() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+}
+ 
+function addDays(d, n) {
+  const r = new Date(d);
+  r.setDate(r.getDate() + n);
+  return r;
+}
+ 
+function dateKey(d) {
+  return d.toISOString().slice(0,10);
+}
+ 
+// Build a map: dateStr → [matches]
+const matchesByDate = {};
+MATCHES.forEach(m => {
+  if (!matchesByDate[m.date]) matchesByDate[m.date] = [];
+  matchesByDate[m.date].push(m);
+});
+ 
+// Participant tags for a match
+function getParticipants(match) {
+  const people = new Set();
+  [match.t1, match.t2].forEach(team => {
+    if (TEAM_OWNERS[team]) TEAM_OWNERS[team].forEach(p => people.add({name:p, wc:false}));
+    if (WILDCARDS.has(team)) people.add({name:"Wildcard", wc:true});
+  });
+  return [...people];
+}
+ 
+function matchHasParticipant(match) {
+  return [match.t1, match.t2].some(t => TEAM_OWNERS[t] || WILDCARDS.has(t));
+}
+ 
+// Render a single match card
+function renderMatch(m) {
+  const participants = getParticipants(m);
+  const highlighted = matchHasParticipant(m);
+  const t1short = m.t1.length > 14 ? m.t1.replace('Bosnia and Herzegovina','Bosnia & Herz.').replace("Côte d'Ivoire","Côte d'Ivoire") : m.t1;
+  const t2short = m.t2.length > 14 ? m.t2.replace('Bosnia and Herzegovina','Bosnia & Herz.') : m.t2;
+ 
+  let tagsHtml = '';
+  if (participants.length) {
+    const tagSet = new Map();
+    [m.t1, m.t2].forEach(team => {
+      if (TEAM_OWNERS[team]) TEAM_OWNERS[team].forEach(p => tagSet.set(p, 'ptag'));
+      if (WILDCARDS.has(team)) tagSet.set('🃏 ' + team, 'ptag wildcard');
+    });
+    tagsHtml = `<div class="participant-tags">` +
+      [...tagSet.entries()].map(([n,cls]) => `<span class="${cls}">${n}</span>`).join('') +
+      `</div>`;
+  }
+ 
+  return `<div class="match-card ${highlighted ? 'has-participant' : ''}">
+    <div class="match-meta">
+      <span class="match-group">${m.group}</span>
+      <span class="match-time">${m.time}</span>
+    </div>
+    <div class="match-teams-row">
+      ${t1short}<span class="match-vs">vs</span>${t2short}
+    </div>
+    ${tagsHtml}
+  </div>`;
+}
+ 
+// Render one day cell
+function renderDayCell(date, isFirst) {
+  const today = localToday();
+  const key = dateKey(date);
+  const matches = matchesByDate[key] || [];
+  const isToday = date.getTime() === today.getTime();
+  const isPast  = date < today;
+ 
+  let classes = 'day-cell';
+  if (isToday) classes += ' is-today';
+  else if (isPast) classes += ' is-past';
+  if (!matches.length) classes += ' empty-day';
+ 
+  if (!matches.length) {
+    return `<div class="${classes}">
+      <div class="day-header">
+        <span class="day-name">${fmtDayName(date)}</span>
+        <span class="day-date">${fmtMonthDay(date)}${isToday ? '<span class="today-pill">TODAY</span>' : ''}</span>
+      </div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <span class="empty-day-label">No matches today</span>
+      </div>
+    </div>`;
+  }
+ 
+  return `<div class="${classes}">
+    <div class="day-header">
+      <span class="day-name">${fmtDayName(date)}</span>
+      <span class="day-date">${fmtMonthDay(date)}${isToday ? ' <span class="today-pill">TODAY</span>' : ''}</span>
+    </div>
+    <div class="match-list">
+      ${matches.map(renderMatch).join('')}
+    </div>
+  </div>`;
+}
+ 
+// ── State & rendering ────────────────────────────────────────────────────
+const FIRST_MATCH_DATE = parseDate("2026-06-11");
+const LAST_MATCH_DATE  = parseDate("2026-06-27");
+ 
+// weekOffset = 0 means the week containing today (or the first match week if before tournament)
+let weekOffset = 0;
+ 
+function getWeekStart() {
+  const today = localToday();
+  // Anchor: Monday of the current week, but clamp to tournament range
+  const dayOfWeek = (today.getDay() + 6) % 7; // 0=Mon
+  let anchor = addDays(today, -dayOfWeek); // Monday this week
+  anchor = addDays(anchor, weekOffset * 7);
+  return anchor;
+}
+ 
+function render() {
+  const grid = document.getElementById('calGrid');
+  const weekStart = getWeekStart();
+  const today = localToday();
+ 
+  // 7 days starting from weekStart
+  const days = Array.from({length:7}, (_,i) => addDays(weekStart, i));
+ 
+  // Find the "current day" slot — the first day in this week that has matches,
+  // or today if today is in the window
+  const windowEnd = addDays(weekStart, 6);
+ 
+  // Week label
+  const wStart = fmtMonthDay(weekStart);
+  const wEnd   = fmtMonthDay(windowEnd);
+  document.getElementById('weekLabel').textContent = `${wStart} – ${wEnd}`;
+ 
+  // Prev/Next button state
+  const prevWeekStart = addDays(weekStart, -7);
+  const nextWeekStart = addDays(weekStart, 7);
+  document.getElementById('prevBtn').disabled = nextWeekStart <= FIRST_MATCH_DATE && weekOffset <= 0
+    || addDays(weekStart, -7) < addDays(FIRST_MATCH_DATE, -6);
+  document.getElementById('nextBtn').disabled = prevWeekStart > LAST_MATCH_DATE
+    || weekStart > LAST_MATCH_DATE;
+ 
+  // Build cells: slot 0 = "Upcoming" label, slots 1-7 = days
+  let html = '';
+ 
+  // Slot 0: Upcoming label
+  html += `<div class="day-cell upcoming-label">
+    <div class="upcoming-title">Upcoming</div>
+    <div class="upcoming-range">${wStart}<br>— ${wEnd}</div>
+  </div>`;
+ 
+  // Slots 1-7: one per day of the week
+  days.forEach(d => {
+    html += renderDayCell(d);
+  });
+ 
+  grid.innerHTML = html;
+ 
+  // Disable prev if we'd go before the tournament
+  document.getElementById('prevBtn').disabled = addDays(weekStart, -7) > LAST_MATCH_DATE
+    ? true
+    : addDays(weekStart, -1) < FIRST_MATCH_DATE;
+  document.getElementById('nextBtn').disabled = addDays(weekStart, 7) > addDays(LAST_MATCH_DATE, 6);
+}
+ 
+function shiftWeek(dir) {
+  weekOffset += dir;
+  render();
+}
+ 
+// On load: if today is before the tournament, jump to the first match week
+(function init() {
+  const today = localToday();
+  if (today < FIRST_MATCH_DATE) {
+    // Calculate offset to get to Jun 11 week
+    const dayOfWeek = (today.getDay() + 6) % 7;
+    const thisMonday = addDays(today, -dayOfWeek);
+    const targetMonday = addDays(FIRST_MATCH_DATE, -((FIRST_MATCH_DATE.getDay()+6)%7));
+    const diff = Math.round((targetMonday - thisMonday) / (7*24*60*60*1000));
+    weekOffset = diff;
+  } else if (today > LAST_MATCH_DATE) {
+    // Jump to last match week
+    const dayOfWeek = (today.getDay() + 6) % 7;
+    const thisMonday = addDays(today, -dayOfWeek);
+    const targetMonday = addDays(LAST_MATCH_DATE, -((LAST_MATCH_DATE.getDay()+6)%7));
+    const diff = Math.round((targetMonday - thisMonday) / (7*24*60*60*1000));
+    weekOffset = diff;
+  }
+  render();
+})();
+</script>
+</body>
+</html>
