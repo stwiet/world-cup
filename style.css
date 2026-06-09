@@ -259,6 +259,18 @@ body {
 .tl-text { font-size: 14px; color: var(--color-text-primary); line-height: 1.5; }
 .tl-sub  { font-size: 13px; color: var(--color-text-secondary); }
 
+.tl-text a {
+   color: var(--color-text-primary);
+   font-weight: 700;
+   text-decoration: none;
+}
+
+.tl-text a:focus, .tl-text a:hover {
+   color: var(--accent-gold);
+   font-weight: 700;
+   text-decoration: none;
+}
+
 /* ============================================================
    Fine print
    ============================================================ */
