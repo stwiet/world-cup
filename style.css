@@ -717,3 +717,124 @@ body {
   .groups-grid  { grid-template-columns: 1fr; }
   .form-cell    { display: none; }
 }
+
+<!-- ── Minimal scoped styles ───────────────────────────────────────────────
+     Only rules not already covered by your central stylesheet.
+     Uses your existing tokens throughout.
+     ──────────────────────────────────────────────────────────────────── -->
+<style>
+.assignments-wrap {
+  margin: 2rem 0;
+}
+ 
+.assignments-header {
+  margin-bottom: 1.25rem;
+}
+ 
+.assignments-sub {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-top: 0.4rem;
+  max-width: 640px;
+  line-height: 1.6;
+}
+ 
+/* Side-by-side on wide screens, stacked on mobile */
+.assignments-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+ 
+@media (max-width: 640px) {
+  .assignments-grid { grid-template-columns: 1fr; }
+}
+ 
+/* Table */
+.assign-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+ 
+.assign-table thead tr {
+  background: var(--navy-deep);
+}
+ 
+.assign-table th {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: var(--accent-gold);
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-tertiary);
+}
+ 
+.col-name { width: 32%; }
+.col-team { width: 34%; }
+ 
+.assign-table td {
+  padding: 8px 12px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  color: var(--color-text-primary);
+  vertical-align: middle;
+}
+ 
+.assign-table tr:last-child td { border-bottom: none; }
+.assign-table tbody tr:nth-child(even) td { background: var(--color-background-secondary); }
+.assign-table tbody tr:hover td { background: rgba(245, 166, 35, 0.05); }
+ 
+.name-cell {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+ 
+/* Wildcard banner */
+.wildcard-banner {
+  background: var(--color-background-secondary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  padding: 1rem 1.25rem 1.25rem;
+}
+ 
+.wildcard-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  color: var(--accent-gold);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+ 
+.wildcard-sub {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.85rem;
+}
+ 
+.wildcard-sub strong { color: var(--color-text-primary); }
+ 
+.wildcard-teams {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+ 
+.wc-pill {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: rgba(245, 166, 35, 0.12);
+  color: var(--accent-gold);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+}
+</style>
