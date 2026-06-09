@@ -56,6 +56,83 @@
           </div>
            </div>
       </div>
+
+      <!-- ============================================================
+     Team Assignments — embed snippet
+     Requires: your central style.css already loaded on the page
+     Requires: Bebas Neue + Lato via Google Fonts (already in your sheet)
+     ============================================================ -->
+ 
+<section class="assignments-wrap">
+ 
+  <div class="assignments-header">
+    <p class="section-title">⚽ Team Assignments</p>
+    <p class="assignments-sub">Each participant is randomly assigned 2 teams. Points are earned when your teams win, advance, or top their group — no football knowledge required.</p>
+  </div>
+ 
+  <div class="assignments-grid">
+ 
+    <!-- Table A — Adam → Lauren -->
+    <table class="assign-table">
+      <thead>
+        <tr>
+          <th class="col-name">Participant</th>
+          <th class="col-team">Team 1</th>
+          <th class="col-team">Team 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="name-cell">Adam</td>        <td>Brazil</td>          <td>Saudi Arabia</td></tr>
+        <tr><td class="name-cell">Aly</td>          <td>Ecuador</td>         <td>Australia</td></tr>
+        <tr><td class="name-cell">Cortney</td>      <td>Colombia</td>        <td>Egypt</td></tr>
+        <tr><td class="name-cell">Heather</td>      <td>France</td>          <td>Türkiye</td></tr>
+        <tr><td class="name-cell">Jacqueline</td>   <td>Croatia</td>         <td>IR Iran</td></tr>
+        <tr><td class="name-cell">Jody</td>         <td>Mexico</td>          <td>South Africa</td></tr>
+        <tr><td class="name-cell">Kelly</td>        <td>Germany</td>         <td>Cabo Verde</td></tr>
+        <tr><td class="name-cell">Kyle</td>         <td>Côte d'Ivoire</td>   <td>Morocco</td></tr>
+        <tr><td class="name-cell">Lauren</td>       <td>Argentina</td>       <td>Ghana</td></tr>
+        <tr><td class="name-cell">Lindsay</td>      <td>Belgium</td>         <td>Korea Republic</td></tr>
+      </tbody>
+    </table>
+ 
+    <!-- Table B — Lucy → Steve -->
+    <table class="assign-table">
+      <thead>
+        <tr>
+          <th class="col-name">Participant</th>
+          <th class="col-team">Team 1</th>
+          <th class="col-team">Team 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="name-cell">Lucy</td>         <td>Japan</td>           <td>Haiti</td></tr>
+        <tr><td class="name-cell">Maureen</td>      <td>USA</td>             <td>Bosnia and Herzegovina</td></tr>
+        <tr><td class="name-cell">Michele</td>      <td>Uruguay</td>         <td>Algeria</td></tr>
+        <tr><td class="name-cell">Miguel</td>       <td>Paraguay</td>        <td>Netherlands</td></tr>
+        <tr><td class="name-cell">Monique</td>      <td>England</td>         <td>Uzbekistan</td></tr>
+        <tr><td class="name-cell">Raj</td>          <td>Portugal</td>        <td>Tunisia</td></tr>
+        <tr><td class="name-cell">Ravi</td>         <td>Norway</td>          <td>Czechia</td></tr>
+        <tr><td class="name-cell">Sam</td>          <td>Senegal</td>         <td>Austria</td></tr>
+        <tr><td class="name-cell">Shaun</td>        <td>Scotland</td>        <td>Switzerland</td></tr>
+        <tr><td class="name-cell">Steve</td>        <td>Canada</td>          <td>Sweden</td></tr>
+      </tbody>
+    </table>
+ 
+  </div>
+ 
+  <!-- Wildcard banner -->
+  <div class="wildcard-banner">
+    <span class="wildcard-label">🃏 Wildcard Teams — Everyone's Teams</span>
+    <p class="wildcard-sub">
+      These 8 teams belong to the whole group. When they win, <strong>everyone</strong> earns ½ pt.
+      Submit a fun fact about any wildcard country in Teams for a +1 bonus point.
+    </p>
+    <div class="wildcard-teams" id="wildcardTeams">
+      <!-- Populated via JS below so you can edit the list in one place -->
+    </div>
+  </div>
+ 
+</section>
       
       <!-- How it works -->
       <div class="section">
@@ -257,6 +334,27 @@
       toggle.setAttribute('aria-expanded', open);
     });
   </script>
+  <script>
+// ── Edit this list when your 8 wildcard teams are confirmed ──
+const wildcards = [
+  "Qatar",
+  "New Zealand",
+  "Jordan",
+  "Iraq",
+  "Curaçao",
+  "Spain",
+  "Sweden",   // placeholder — replace with your actual 8
+  "Congo DR",
+];
+ 
+const container = document.getElementById('wildcardTeams');
+wildcards.forEach(name => {
+  const pill = document.createElement('span');
+  pill.className = 'wc-pill';
+  pill.textContent = name;
+  container.appendChild(pill);
+});
+</script>
 
 </body>
 </html>
