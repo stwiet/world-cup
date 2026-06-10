@@ -231,6 +231,11 @@ body {
   color: var(--accent-green);
 }
 
+.pts-badge.title {
+  background: #0f3d24;
+  color: var(--color-text-secondary);
+}
+
 /* ============================================================
    Timeline
    ============================================================ */
