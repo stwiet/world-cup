@@ -671,6 +671,42 @@ body {
 }
 
 /* ============================================================
+   Scores table
+   ============================================================ */
+.scores-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.scores-table th {
+  text-align: left;
+  font-size: 11px; letter-spacing: 1px;
+  color: var(--color-text-secondary);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  padding: 6px 8px;
+}
+
+.scores-table td {
+  padding: 8px 8px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+
+.scores-table tr:last-child td { border-bottom: none; }
+
+.pts-badge {
+  display: inline-block; font-weight: 700; font-size: 12px;
+  background: var(--navy-deep); color: var(--accent-green);
+  padding: 2px 8px; border-radius: 4px;
+  min-width: 40px; text-align: center;
+  text-align: center;
+}
+.pts-badge.total {
+  background: #0f3d24;
+  color: var(--accent-gold);
+}
+
+/* ============================================================
    Loading / error states
    ============================================================ */
 .state-box {
