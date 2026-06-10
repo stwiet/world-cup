@@ -42,122 +42,25 @@
 <div class="section">
   <p class="section-title">Points Scored</p>
   <div class="card" style="padding: 0; overflow: hidden;">
-    <p style="font-size:12px; color:var(--color-text-secondary); padding: 10px 14px; border-bottom: 0.5px solid var(--color-border-tertiary); font-style:italic;">Last updated: June 10, 11AM</p>
-    <table class="scores-table">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding: 10px 14px; border-bottom: 0.5px solid var(--color-border-tertiary);">
+      <p style="font-size:12px; color:var(--color-text-secondary); font-style:italic; margin:0;" id="scoresUpdated"></p>
+      <span style="font-size:11px; color:var(--color-text-secondary);">Sorted by total ↓</span>
+    </div>
+    <table class="scores-table" id="scoresTable">
       <thead>
         <tr>
-          <th>Name &amp; Teams</th>
-          <th title="pts from facts and any bonus points">Facts &amp; Bonus</th>
-          <th title="pts from correct answers to trivia questions">Trivia</th>
-          <th title="pts from teams winning games or winning whole group">Group Wins</th>
-          <th title="pts from yellow cards, red cards = 2 yellow cards">Yellow Cards</th>
-          <th title="pts from games with greatest goal difference">Goal Diff</th>
-          <th title="pts from advancing to round of 32">Advances</th>
+          <th style="width:28px;">#</th>
+          <th style="text-align:left;">Name &amp; Teams</th>
+          <th title="Points from facts submitted and bonus points for bulletin board posts">Facts &amp; Bonus</th>
+          <th title="Points from correct weekly trivia answers">Trivia</th>
+          <th title="Points from teams winning group stage matches">Group Wins</th>
+          <th title="Points from yellow cards — red card counts as 2">Yellow Cards</th>
+          <th title="Points from matches with greatest goal difference">Goal Diff</th>
+          <th title="Points from teams advancing to Round of 32">Advances</th>
           <th>Total</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td class="score-name">Adam<br><span class="score-teams">BRA | KSA</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Aly<br><span class="score-teams">ECU | AUS</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Cortney<br><span class="score-teams">COL | EGY</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Heather<br><span class="score-teams">FRA | TUR</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Jacqueline<br><span class="score-teams">CRO | IRN</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Jody<br><span class="score-teams">MEX | RSA</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Kelly<br><span class="score-teams">GER | CPV</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Kyle<br><span class="score-teams">CIV | MAR</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Lauren<br><span class="score-teams">ARG | GHA</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Lindsay<br><span class="score-teams">BEL | KOR</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Lucy<br><span class="score-teams">JPN | HAI</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Maureen<br><span class="score-teams">USA | BOS</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Michele<br><span class="score-teams">URU | ALG</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Miguel<br><span class="score-teams">PAR | NED</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Monique<br><span class="score-teams">ENG | UZB</span></td>
-          <td>2</td><td>1</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">3</td>
-        </tr>
-        <tr>
-          <td class="score-name">Raj<br><span class="score-teams">POR | TUN</span></td>
-          <td>2</td><td>1</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">3</td>
-        </tr>
-        <tr>
-          <td class="score-name">Ravi<br><span class="score-teams">NOR | CZE</span></td>
-          <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">-</td>
-        </tr>
-        <tr>
-          <td class="score-name">Sam<br><span class="score-teams">SEN | AUT</span></td>
-          <td>-</td><td>1</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">1</td>
-        </tr>
-        <tr>
-          <td class="score-name">Shaun<br><span class="score-teams">SCO | SUI</span></td>
-          <td>3</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">3</td>
-        </tr>
-        <tr>
-          <td class="score-name">Steve<br><span class="score-teams">CAN | SWE</span></td>
-          <td>-</td><td>1</td><td>-</td><td>-</td><td>-</td><td>-</td>
-          <td class="score-total">1</td>
-        </tr>
-      </tbody>
+      <tbody id="scoresBody"></tbody>
     </table>
   </div>
 </div>
@@ -184,7 +87,87 @@
   <div class="legend-item"><div class="legend-dot" style="background:var(--draw)"></div> Draw</div>
   <div class="legend-item"><div class="legend-dot" style="background:var(--loss)"></div> Loss</div>
 </div>
+
+<script>
+// ================================================================
+//  ✏️  EDIT THIS SECTION TO UPDATE SCORES
+//  Columns: [facts_bonus, trivia, group_wins, yellow_cards, goal_diff, advances]
+//  Use 0 for no points yet. The table sorts itself automatically.
+// ================================================================
  
+const LAST_UPDATED = "June 10, 11AM";
+ 
+const SCORES = [
+  // name,          teams,        facts, trivia, wins, yellow, goaldiff, advances
+  { name: "Adam",       teams: "BRA | KSA", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Aly",        teams: "ECU | AUS", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Cortney",    teams: "COL | EGY", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Heather",    teams: "FRA | TUR", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Jacqueline", teams: "CRO | IRN", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Jody",       teams: "MEX | RSA", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Kelly",      teams: "GER | CPV", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Kyle",       teams: "CIV | MAR", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Lauren",     teams: "ARG | GHA", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Lindsay",    teams: "BEL | KOR", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Lucy",       teams: "JPN | HAI", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Maureen",    teams: "USA | BOS", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Michele",    teams: "URU | ALG", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Miguel",     teams: "PAR | NED", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Monique",    teams: "ENG | UZB", s: [2, 1, 0, 0, 0, 0] },
+  { name: "Raj",        teams: "POR | TUN", s: [2, 1, 0, 0, 0, 0] },
+  { name: "Ravi",       teams: "NOR | CZE", s: [0, 0, 0, 0, 0, 0] },
+  { name: "Sam",        teams: "SEN | AUT", s: [0, 1, 0, 0, 0, 0] },
+  { name: "Shaun",      teams: "SCO | SUI", s: [3, 0, 0, 0, 0, 0] },
+  { name: "Steve",      teams: "CAN | SWE", s: [0, 1, 0, 0, 0, 0] },
+];
+ 
+// ================================================================
+//  Everything below here is automatic — no need to edit
+// ================================================================
+ 
+document.getElementById('scoresUpdated').textContent = 'Last updated: ' + LAST_UPDATED;
+ 
+function renderScores() {
+  // Add total to each entry and sort descending
+  const data = SCORES.map(p => ({
+    ...p,
+    total: p.s.reduce((a, b) => a + b, 0)
+  })).sort((a, b) => b.total - a.total || a.name.localeCompare(b.name));
+ 
+  // Find rank (tied scores share a rank)
+  let rank = 1;
+  data.forEach((p, i) => {
+    p.rank = (i > 0 && p.total === data[i - 1].total) ? data[i - 1].rank : rank;
+    rank = i + 1 + 1; // next rank after ties
+  });
+ 
+  const body = document.getElementById('scoresBody');
+  body.innerHTML = data.map((p, i) => {
+    const isTop = p.rank === 1 && p.total > 0;
+    const isTied = data.filter(x => x.total === p.total).length > 1 && p.total > 0;
+    const rowBg = i % 2 === 1 ? 'background: var(--color-background-secondary);' : '';
+ 
+    const cells = p.s.map(v =>
+      `<td style="${rowBg}">${v > 0 ? v : '<span style="color:var(--color-text-secondary);font-weight:400">–</span>'}</td>`
+    ).join('');
+ 
+    const rankDisplay = isTied ? `=${p.rank}` : p.rank;
+    const rankStyle = isTop
+      ? 'color: var(--accent-gold); font-weight:700;'
+      : 'color: var(--color-text-secondary); font-weight:400;';
+ 
+    return `<tr>
+      <td style="font-size:11px; text-align:center; ${rankStyle} ${rowBg}">${rankDisplay}</td>
+      <td class="score-name" style="${rowBg}">${p.name}<br><span class="score-teams">${p.teams}</span></td>
+      ${cells}
+      <td class="score-total" style="${p.total > 0 ? '' : 'color:var(--color-text-secondary);font-weight:400;'}">${p.total > 0 ? p.total : '–'}</td>
+    </tr>`;
+  }).join('');
+}
+ 
+renderScores();
+</script>
+      
 <script>
 const DATA_URL = 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
 const GROUP_STAGE_ROUNDS = ['Matchday 1','Matchday 2','Matchday 3','Matchday 4','Matchday 5','Matchday 6','Matchday 7','Matchday 8','Matchday 9','Matchday 10','Matchday 11','Matchday 12','Matchday 13','Matchday 14','Matchday 15','Matchday 16'];
