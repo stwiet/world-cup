@@ -124,10 +124,143 @@
           </table>
         </div>
       </div>
+ <!-- ============================================================
+     Fun Facts Section — filterable card grid
+     Drop into your existing page. Uses your central stylesheet.
+     Scoped CSS at bottom — pull into central sheet when ready.
+     ============================================================ -->
  
+<div class="section facts-section">
+ 
+  <p class="section-title">🌍 Fun Facts from the Field</p>
+  <p class="facts-intro">Submitted by participants across all 20 assigned countries. Starred facts have been posted to the bulletin board.</p>
+ 
+  <!-- Filter buttons -->
+  <div class="facts-filters" role="group" aria-label="Filter facts by theme">
+    <button class="fact-filter active" data-filter="all">All <span class="filter-count" id="count-all"></span></button>
+    <button class="fact-filter" data-filter="General Trivia">General Trivia <span class="filter-count" id="count-trivia"></span></button>
+    <button class="fact-filter" data-filter="Politics">Politics <span class="filter-count" id="count-politics"></span></button>
+    <button class="fact-filter" data-filter="FIFA">FIFA <span class="filter-count" id="count-fifa"></span></button>
+  </div>
+ 
+  <!-- Card grid — rendered by JS -->
+  <div class="facts-grid" id="factsGrid" aria-live="polite"></div>
+ 
+  <p class="facts-empty" id="factsEmpty" style="display:none;">No facts match this filter.</p>
+ 
+</div>
 
     </div><!-- /pitch-wrap -->
   </div><!-- /page-shell -->
 
 </body>
+
+  <script>
+// ================================================================
+//  ✏️  FACTS DATA — add rows here as new facts come in
+//  Fields: country, name, fact, theme, onBoard (true = posted to bulletin board)
+// ================================================================
+ 
+const FACTS = [
+  { country: "Argentina",    name: "Lauren",   theme: "Politics",       onBoard: false, fact: "Indigenous peoples are advocating for a 'just transition' to clean energy, pushing back against aggressive lithium mining by the state." },
+  { country: "Argentina",    name: "Lauren",   theme: "General Trivia", onBoard: false, fact: "Located in Aconcagua Provincial Park, Mount Aconcagua (6,961 m / 22,838 ft) is the highest peak in both the Americas and the entire Southern Hemisphere. The normal northern route is 'considered a non-technical climb' — anyone up for it?" },
+  { country: "Australia",    name: "Aly",      theme: "General Trivia", onBoard: false, fact: "Home to the longest-running experiment, the Pitch Drop Experiment, started in 1927 and still ongoing. The 9th drop fell in 2014." },
+  { country: "Belgium",      name: "Lindsay",  theme: "General Trivia", onBoard: false, fact: "Brussels' Manneken Pis statue (a peeing boy) has a wardrobe of over 1,000 costumes, from Elvis Presley to Nelson Mandela." },
+  { country: "Cabo Verde",   name: "Kelly",    theme: "Politics",       onBoard: false, fact: "One of the few countries with no indigenous population — the islands were uninhabited when Portuguese sailors arrived in 1456." },
+  { country: "Colombia",     name: "Cortney",  theme: "FIFA",           onBoard: false, fact: "Suspended by FIFA in the early 1950s over player transfer disputes, clubs responded by luring world-class players with enormous wages." },
+  { country: "Côte d'Ivoire",name: "Kyle",     theme: "General Trivia", onBoard: false, fact: "The country's name comes from European colonists naming coastal regions after extracted resources — ivory in this case. Since 1986, Côte d'Ivoire officially refuses to recognize translations of its name." },
+  { country: "Croatia",      name: "Jaclyn",   theme: "FIFA",           onBoard: false, fact: "Joined FIFA in 1994 ranked 125th, then jumped to 3rd just four years later after their first World Cup appearance." },
+  { country: "Czechia",      name: "Lindsay",  theme: "General Trivia", onBoard: false, fact: "Known as the 'Defenestration Capital' — the 1618 Defenestration of Prague, where officials were thrown from a window, sparked the Thirty Years' War." },
+  { country: "Ecuador",      name: "Aly",      theme: "Politics",       onBoard: false, fact: "The first country to grant constitutional rights to nature, in 2008." },
+  { country: "Egypt",        name: "Cortney",  theme: "General Trivia", onBoard: false, fact: "The Statue of Liberty was originally designed for the entrance of the Suez Canal, but Egypt passed on it." },
+  { country: "England",      name: "Monique",  theme: "FIFA",           onBoard: false, fact: "Hosted and won the 1966 FIFA World Cup, defeating West Germany 4–2 in the final at Wembley Stadium." },
+  { country: "Germany",      name: "Kelly",    theme: "General Trivia", onBoard: false, fact: "Gummy bears were invented in Germany. Hans Riegel founded Haribo in Bonn in 1920 — the name is a contraction of HAns RIegel BOnn." },
+  { country: "Ghana",        name: "Lauren",   theme: "FIFA",           onBoard: false, fact: "The Ghanaian government will procure match tickets for anyone living abroad who wish to support the Black Stars — they've previously sponsored large groups of supporters to travel, and this year are arranging tickets for Ghanaians in host cities like Toronto." },
+  { country: "Ghana",        name: "Lauren",   theme: "Politics",       onBoard: false, fact: "Recently passed a law criminalizing the promotion of LGBTQ+ activities and identification, with prison sentences of 3–10 years." },
+  { country: "Haiti",        name: "Monique",  theme: "FIFA",           onBoard: false, fact: "On June 15, 1974, Haiti scored the opening goal against Italy, ending goalkeeper Dino Zoff's incredible 1,142-minute clean sheet streak." },
+  { country: "Mexico",       name: "Jody",     theme: "General Trivia", onBoard: false, fact: "Home to the second-largest coral reef in the world." },
+  { country: "Morocco",      name: "Kyle",     theme: "Politics",       onBoard: false, fact: "In 1777, became the first country outside the US to officially recognize American independence, leading to the Moroccan-American Treaty of Friendship in 1786." },
+  { country: "New Zealand",  name: "Jody",     theme: "Politics",       onBoard: false, fact: "In 1893, became the first self-governing country in the world to grant women the right to vote." },
+  { country: "Panama",       name: "Jody",     theme: "General Trivia", onBoard: false, fact: "Archaeological excavations show human presence dating back to 300 BC." },
+  { country: "Portugal",     name: "Raj",      theme: "Politics",       onBoard: false, fact: "In 2016, produced enough renewable energy to meet the country's electricity demand for 107 consecutive hours — over four straight days." },
+  { country: "Qatar",        name: "Kelly",    theme: "General Trivia", onBoard: false, fact: "One of the few countries with virtually no natural fresh water — almost all drinking water comes from desalination of seawater." },
+  { country: "Scotland",     name: "Shaun",    theme: "General Trivia", onBoard: false, fact: "The national animal is the unicorn, which became fashionable as a heraldic symbol in the 12th century." },
+  { country: "South Korea",  name: "Lindsay",  theme: "General Trivia", onBoard: false, fact: "The most common high school graduation gift is plastic surgery." },
+  { country: "South Korea",  name: "Lindsay",  theme: "General Trivia", onBoard: false, fact: "Many Koreans believe that sleeping in a closed room with a fan running will kill you — a widespread belief with murky origins." },
+  { country: "Switzerland",  name: "Shaun",    theme: "FIFA",           onBoard: false, fact: "Despite FIFA being headquartered there, Switzerland has only hosted the World Cup once (1954) and never advanced past the quarter-finals." },
+  { country: "Tunisia",      name: "Raj",      theme: "General Trivia", onBoard: false, fact: "The Tunisian filming location for Star Wars' Tatooine is now a hotel, with the restaurant set used as the Lars family dining room in Attack of the Clones." },
+  { country: "Uzbekistan",   name: "Monique",  theme: "FIFA",           onBoard: false, fact: "After 35 years of independence and seven failed qualification attempts, Uzbekistan qualified for their first ever World Cup." },
+  { country: "Austria",      name: "Sam",      theme: "General Trivia", onBoard: false, fact: "The Sound of Music was filmed in 1964 on location in Salzburg. To film Nazi flags on buildings, the director threatened local officials he'd use real footage of citizens cheering the 1939 Anschluss — since Nazi symbols are banned in Austria." },
+  { country: "Senegal",      name: "Sam",      theme: "General Trivia", onBoard: false, fact: "Lake Retba is a bright pink color due to green algae producing red pigments in unusually high salinity. If you see pictures of the nearly Pepto-Bismol pink lake, it's probably not AI!" },
+];
+ 
+// ================================================================
+//  Everything below is automatic
+// ================================================================
+ 
+function tagClass(theme) {
+  if (theme === "Politics") return "tag-politics";
+  if (theme === "FIFA")     return "tag-fifa";
+  return "tag-trivia";
+}
+ 
+function tagLabel(theme) {
+  if (theme === "General Trivia") return "Trivia";
+  return theme;
+}
+ 
+function renderCards(filter) {
+  const grid  = document.getElementById('factsGrid');
+  const empty = document.getElementById('factsEmpty');
+  const visible = filter === 'all' ? FACTS : FACTS.filter(f => f.theme === filter);
+ 
+  if (visible.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+ 
+  grid.innerHTML = FACTS.map(f => {
+    const hide = (filter !== 'all' && f.theme !== filter) ? 'hidden' : '';
+    return `<article class="fact-card ${hide} ${f.onBoard ? 'on-board' : ''}" data-theme="${f.theme}">
+      <div class="fact-card-header">
+        <div>
+          <div class="fact-country">${f.country}</div>
+          <div class="fact-submitter">by ${f.name}</div>
+          ${f.onBoard ? '<div class="fact-board-star">★ On the board</div>' : ''}
+        </div>
+        <span class="fact-tag ${tagClass(f.theme)}">${tagLabel(f.theme)}</span>
+      </div>
+      <div class="fact-card-body">
+        <p class="fact-text">${f.fact}</p>
+      </div>
+    </article>`;
+  }).join('');
+}
+ 
+function updateCounts() {
+  const all      = FACTS.length;
+  const trivia   = FACTS.filter(f => f.theme === "General Trivia").length;
+  const politics = FACTS.filter(f => f.theme === "Politics").length;
+  const fifa     = FACTS.filter(f => f.theme === "FIFA").length;
+  document.getElementById('count-all').textContent     = all;
+  document.getElementById('count-trivia').textContent  = trivia;
+  document.getElementById('count-politics').textContent= politics;
+  document.getElementById('count-fifa').textContent    = fifa;
+}
+ 
+// Wire up filter buttons
+document.querySelectorAll('.fact-filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.fact-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCards(btn.dataset.filter);
+  });
+});
+ 
+// Init
+updateCounts();
+renderCards('all');
+</script>
 </html>
