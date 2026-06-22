@@ -1219,3 +1219,187 @@ Minimal scoped styles
   .day-cell.upcoming-label     { min-height: 80px; }
   .match-teams-row             { font-size: 11px; }
 }
+
+/* Scoped styles ─────────────────────────────────────────── */
+.facts-section { margin-bottom: 2.5rem; }
+ 
+.facts-intro {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+ 
+/* Filter buttons */
+.facts-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+ 
+.fact-filter {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 7px 16px;
+  border-radius: 99px;
+  border: 1px solid var(--color-border-tertiary);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.fact-filter:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+.fact-filter.active {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: var(--navy-deep);
+}
+.fact-filter.active .filter-count {
+  background: rgba(10, 34, 64, 0.2);
+  color: var(--navy-deep);
+}
+ 
+.filter-count {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(245, 166, 35, 0.15);
+  color: var(--accent-gold);
+  border-radius: 99px;
+  padding: 1px 6px;
+  min-width: 18px;
+  text-align: center;
+}
+ 
+/* Card grid */
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+ 
+/* Individual fact card */
+.fact-card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s;
+}
+.fact-card:hover { border-color: var(--color-border-secondary); }
+ 
+/* Card header */
+.fact-card-header {
+  padding: 10px 12px 8px;
+  background: rgba(0,0,0,0.2);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+ 
+.fact-country {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--accent-gold);
+  line-height: 1;
+  flex: 1;
+}
+ 
+.fact-submitter {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  margin-top: 3px;
+}
+ 
+/* Theme tag */
+.fact-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.fact-tag.tag-trivia {
+  background: rgba(245, 166, 35, 0.12);
+  color: var(--accent-gold);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+}
+.fact-tag.tag-politics {
+  background: rgba(127, 239, 177, 0.1);
+  color: var(--accent-green);
+  border: 1px solid rgba(127, 239, 177, 0.25);
+}
+.fact-tag.tag-fifa {
+  background: rgba(100, 160, 255, 0.1);
+  color: #7ab4f5;
+  border: 1px solid rgba(100, 160, 255, 0.25);
+}
+ 
+/* Card body */
+.fact-card-body {
+  padding: 10px 12px 12px;
+  flex: 1;
+}
+ 
+.fact-text {
+  font-size: 13px;
+  color: var(--color-text-primary);
+  line-height: 1.65;
+}
+ 
+/* Bulletin board star badge */
+.fact-card.on-board {
+  border-color: rgba(245, 166, 35, 0.3);
+}
+.fact-card.on-board .fact-card-header {
+  background: rgba(245, 166, 35, 0.06);
+}
+.fact-board-star {
+  font-size: 11px;
+  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 5px;
+  font-style: italic;
+}
+ 
+/* Empty state */
+.facts-empty {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  background: var(--color-background-primary);
+  border: 0.5px dashed var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+}
+ 
+/* Hidden card state */
+.fact-card.hidden {
+  display: none;
+}
+ 
+/* Responsive */
+@media (max-width: 720px) {
+  .facts-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .facts-grid { grid-template-columns: 1fr; }
+}
